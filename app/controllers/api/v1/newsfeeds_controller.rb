@@ -9,6 +9,7 @@ module Api::V1
     def posts_with_comments
       Post.all.map do |post|
         {
+          id: post.id,
           content: post.content,
           subject: post.subject,
           author: post.user.first_name,
@@ -20,6 +21,7 @@ module Api::V1
     def comments_for_post(post)
       post.comments.map do |comment|
         {
+          id: comment.id,
           content: comment.content,
           author: comment.user.first_name
         }
