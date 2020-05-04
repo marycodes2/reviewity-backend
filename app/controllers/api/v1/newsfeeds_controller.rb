@@ -1,5 +1,7 @@
 module Api::V1
   class NewsfeedsController < ApplicationController
+    before_action :authenticate_user!
+
     def index
       render json: posts_with_comments
     end
