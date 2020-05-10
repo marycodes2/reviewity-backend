@@ -1,7 +1,5 @@
-class Api::V1::UsersController < ApplicationController
-  skip_before_action :verify_authenticity_token
-
-  def create
+class Api::V1::ProfilesController < ApplicationController
+  def show
     user = User.create(user_params)
 
     if user.valid?
@@ -15,11 +13,5 @@ class Api::V1::UsersController < ApplicationController
         errors: user.errors.full_messages
       }, status: :unauthorized
     end
-  end
-
-  private
-
-  def user_params
-    params.permit(:password, :email, :first_name, :last_name)
   end
 end

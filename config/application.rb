@@ -6,6 +6,11 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+# config.action_dispatch.default_headers = {
+#   'Access-Control-Allow-Origin' => 'http://localhost:3001',
+#   'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
+# }
+
 module ReviewityBackend
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -15,5 +20,7 @@ module ReviewityBackend
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+    config.api_only = true
   end
 end

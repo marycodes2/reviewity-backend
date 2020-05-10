@@ -6,9 +6,11 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      resources :posts, only: %i[create index destroy]
       resources :users, only: :create
-      resources :newsfeeds, only: :index
-      resources :sessions, only: %i[create destroy]
+      resources :sessions, only: %i[create]
+
+      get 'sessions/auto_login', to: 'sessions#auto_login'
     end
   end
 end
