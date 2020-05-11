@@ -20,6 +20,20 @@ module Api::V1
       end
     end
 
+    def update
+      post = Post.find(params[:id])
+
+      if current_user.owns_post?(post)
+        post.update!(
+          content: params[:content],
+        )
+
+        render json: post_with_comments(post)
+      else
+        status :unauthorized
+      end
+    end
+
     def destroy
       post = Post.find(params[:id])
 
