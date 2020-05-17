@@ -16,6 +16,18 @@ module Api::V1
       end
     end
 
+    def destroy
+      comment = Comment.find(params[:id])
+
+      if current_user.owns_comment?(comment)
+        deleted_comment = comment.destroy
+
+        render json: deleted_comment
+      else
+        status :unauthorized
+      end
+    end
+
     private
 
     attr_reader :comment

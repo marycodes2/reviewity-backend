@@ -9,4 +9,8 @@ class User < ApplicationRecord
   def owns_post?(post)
     post.user == self
   end
+
+  def owns_comment?(comment)
+    comment.user == self
+  end
 end
