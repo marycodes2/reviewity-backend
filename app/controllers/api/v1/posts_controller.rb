@@ -70,9 +70,11 @@ module Api::V1
     def comments_for_post(post)
       post.comments.map do |comment|
         {
-          id: comment.id,
+          author: comment.user.first_name,
+          author_id: comment.user.id,
           content: comment.content,
-          author: comment.user.first_name
+          id: comment.id,
+          post_id: post.id,
         }
       end
     end
